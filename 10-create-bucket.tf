@@ -12,7 +12,7 @@ resource "aws_s3_bucket_acl" "bucket_acl" {
   acl    = "private"
 }
 
-# Upload an object to the bucket from current directory
+# Upload local objects to the bucket from current directory
   resource "aws_s3_object" "object1" {
   for_each = fileset("s3-files/", "*")
   bucket = aws_s3_bucket.whyarebucketnamesalwaystaken-bucket.id

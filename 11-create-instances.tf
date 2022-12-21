@@ -1,3 +1,6 @@
+# Create the loadbalancer instance in the first public subnet
+# It copies the needed files from the S3 bucket for nginx to be configured properly
+
 resource "aws_instance" "dev-loadbalancer" {
   ami           = "ami-06ce824c157700cd2"
   instance_type = "t2.micro"
@@ -32,6 +35,8 @@ resource "aws_instance" "dev-loadbalancer" {
   }
 }
 
+
+# Create the webserver instances in the private subnet
 resource "aws_instance" "dev-webserver-1" {
   ami           = "ami-06ce824c157700cd2"
   instance_type = "t2.micro"
@@ -145,18 +150,3 @@ resource "aws_instance" "dev-webserver-3" {
     Name = "NGX-WS-3"
   }
 }
-
-# Create a database instance
-# resource "aws_instance" "dev-database" {
-#   ami           = "ami-06ce824c157700cd2"
-#   instance_type = "t2.micro"
-#   key_name      = "terraform-ssh"
-#   subnet_id     = aws_subnet.dev-private-2.id
-#   availability_zone = eu-central-1a
-#   private_ip = "10.0.1.50"
-#   vpc_security_group_ids = [aws_security_group.allow_private_db_traffic.id]
-
-#   tags = {
-#     Name = "NGX-DB"
-#   }
-# }

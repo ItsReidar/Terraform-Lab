@@ -86,22 +86,3 @@ resource "aws_security_group" "allow_private_traffic" {
     Name = "dev-private-sg"
   }
 }
-
-# Creating the Security Group for the Database
-# resource "aws_security_group" "allow_private_db_traffic" {
-#   name        = "inbound_db_traffic"
-#   description = "Allow private inbound db traffic"
-#   vpc_id      = aws_vpc.dev-vpc.id
-
-#     ingress {
-#     description      = "MySQL"
-#     from_port        = 3306
-#     to_port          = 3306
-#     protocol         = "tcp"
-#     cidr_blocks      = ["10.0.2.0/24"]
-#     }
-
-#     tags = {
-#     Name = "DEV-ALLOW-PRIVATE-DB"
-#   }
-# }
